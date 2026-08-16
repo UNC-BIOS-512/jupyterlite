@@ -7,3 +7,5 @@ dependencies:
   - xeus-r
   - r-ggplot2
   - r-dplyr
+  - r-readr
+  - r-palmerpenguins
