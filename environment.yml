@@ -5,4 +5,5 @@ channels:
 dependencies:
   - xeus-python
   - xeus-r
-  - ipycanvas
+  - r-ggplot2
+  - r-dplyr
