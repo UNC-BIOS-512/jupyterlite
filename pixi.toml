@@ -1,0 +1,17 @@
+[workspace]
+name = "jupyterlite"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"] # CI runner + your laptop
+
+[dependencies]
+python = "3.12.*"
+jupyterlite-core = ">=0.7,<0.9"
+jupyterlite-xeus = ">=4.3"
+micromamba = "==2.0.2"
+jupyter_server = "*"
+notebook = ">=7.5"
+
+[tasks]
+clean = "rm -rf dist .jupyterlite.doit.db"
+build = { cmd = "jupyter lite build --contents content --output-dir dist", depends-on = ["clean"] }
+serve = "jupyter lite serve --base-url /jupyterlite/ --port 8000"
