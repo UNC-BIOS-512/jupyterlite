@@ -31,6 +31,9 @@ serve = "jupyter lite serve --base-url /jupyterlite/ --port 8000"
 # for the browser kernel — see scripts/r-cowsay-recipe/.
 [feature.author]
 channels = ["conda-forge", "chuckpr"]
+# Match the browser kernel's Rprofile.site (mounted into $R_HOME/etc via
+# XeusAddon.mounts in jupyter_lite_config.json) for local/browser parity.
+activation.env.R_PROFILE_USER = "${PIXI_PROJECT_ROOT}/Rprofile.site"
 
 [feature.author.dependencies]
 jupyterlab = "*"

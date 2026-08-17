@@ -3,7 +3,7 @@
     "contents": ["content"],
     "output_dir": "dist"
   },
-  "ContentsManager": {
-    "allow_hidden": true
+  "XeusAddon": {
+    "mounts": ["Rprofile.site:/lib/R/etc"]
   }
 }
