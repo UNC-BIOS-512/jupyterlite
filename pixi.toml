@@ -36,6 +36,7 @@ channels = ["conda-forge", "chuckpr"]
 jupyterlab = "*"
 xeus-python = "*"
 xeus-r = "*"
+r-base = "==4.5.3"
 r-ggplot2 = "*"
 r-dplyr = "*"
 r-readr = "*"
