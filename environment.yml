@@ -2,6 +2,11 @@ name: xeus-kernel
 channels:
   - https://repo.prefix.dev/emscripten-forge-dev
   - https://repo.prefix.dev/conda-forge
+  # Fallback only, for r-cowsay (not on conda-forge/emscripten-forge). Built
+  # for emscripten-wasm32 and published here since no public channel carries
+  # it. Listed last so conda-forge always wins when a package is on both.
+  # See scripts/r-cowsay-recipe/ to rebuild.
+  - https://conda.anaconda.org/chuckpr
 dependencies:
   - xeus-python
   - xeus-r
@@ -9,3 +14,4 @@ dependencies:
   - r-dplyr
   - r-readr
   - r-palmerpenguins
+  - r-cowsay

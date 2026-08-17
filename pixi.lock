@@ -15,8 +15,10 @@ environments:
   author:
     channels:
     - url: https://conda.anaconda.org/conda-forge/
+    - url: https://conda.anaconda.org/chuckpr/
     packages:
       linux-64:
+      - conda: https://conda.anaconda.org/chuckpr/noarch/r-cowsay-1.2.2-h4616a5c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/argon2-cffi-bindings-25.1.0-py312h4c3975b_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/backports.zstd-1.7.0-py312h3f22e6b_0.conda
@@ -299,6 +301,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xeus-python-shell-raw-0.8.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
       osx-arm64:
+      - conda: https://conda.anaconda.org/chuckpr/noarch/r-cowsay-1.2.2-h4616a5c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/_r-mutex-1.0.1-anacondar_1.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/annotated-doc-0.0.5-pyhcf101f3_0.conda
@@ -910,6 +913,16 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zeromq-4.3.5-h10816f8_11.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hf451053_7.conda
 packages:
+- conda: https://conda.anaconda.org/chuckpr/noarch/r-cowsay-1.2.2-h4616a5c_0.conda
+  sha256: 40db195a03317ad61805087b6eec6af0767c137fae217611576166d3de41b501
+  md5: 5f5abb57ee6c73870f0eadd701acc416
+  depends:
+  - r-base >=4.1
+  - r-crayon
+  - r-rlang
+  license: MIT
+  size: 666689
+  timestamp: 1786971773058
 - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
   build_number: 20
   sha256: 1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9
