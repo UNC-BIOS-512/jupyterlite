@@ -1,6 +1,9 @@
 {
   "LiteBuildConfig": {
     "contents": ["content"],
-    "output_dir": "_output"
+    "output_dir": "dist"
+  },
+  "ContentsManager": {
+    "allow_hidden": true
   }
 }
