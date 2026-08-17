@@ -1,6 +1,13 @@
 name: xeus-kernel
 channels:
-  - https://repo.prefix.dev/emscripten-forge-dev
+  # Newer emscripten-abi (4.x) generation than emscripten-forge-dev (3.1.73)
+  # - has xeus-r 0.11.x / r-base 4.5.3+, including the cairo font-scaling fix
+  # (cairo_set_font_size() was a no-op under emscripten-wasm32, so chart text
+  # size was uncontrollable - see patches/0014-Fix-cairo-font-scaling-in-emscripten.patch
+  # in emscripten-forge/recipes). Compiled R packages (dplyr, readr, etc.)
+  # must come from here to match this ABI; pure-R noarch packages (ggplot2
+  # and friends) are unaffected by the ABI and still resolve from conda-forge.
+  - https://repo.prefix.dev/emscripten-forge-4x
   - https://repo.prefix.dev/conda-forge
   # Fallback only, for r-cowsay (not on conda-forge/emscripten-forge). Built
   # for emscripten-wasm32 and published here since no public channel carries
@@ -9,7 +16,8 @@ channels:
   - https://conda.anaconda.org/chuckpr
 dependencies:
   - xeus-python
-  - xeus-r
+  - xeus-r ==0.11.2
+  - r-base ==4.5.3
   - r-ggplot2
   - r-dplyr
   - r-readr
