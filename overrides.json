@@ -2,8 +2,5 @@
   "@jupyterlab/docmanager-extension:plugin": {
     "autosave": true,
     "autosaveInterval": 30
-  },
-  "@jupyterlab/filebrowser-extension:browser": {
-    "showHiddenFiles": true
   }
 }
