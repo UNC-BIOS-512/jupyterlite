@@ -10,6 +10,10 @@ jupyterlite-xeus = ">=4.3"
 micromamba = "==2.0.2"
 jupyter_server = "*"
 notebook = ">=7.5"
+# Prebuilt/federated JupyterLab extension, no server component required -
+# safe to bundle into the JupyterLite build (jupyter lite build picks up
+# federated extensions from this env's site-packages).
+jupyterlab_rise = "*"
 
 [tasks]
 clean = "rm -rf dist .jupyterlite.doit.db"
@@ -28,6 +32,7 @@ r-ggplot2 = "*"
 r-dplyr = "*"
 r-readr = "*"
 r-palmerpenguins = "*"
+jupyterlab_rise = "*"
 
 [feature.author.tasks]
 lab = "jupyter lab --notebook-dir=content"
