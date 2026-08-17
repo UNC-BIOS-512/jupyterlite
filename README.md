@@ -19,3 +19,9 @@ To author a notebook locally in an environment that matches what's deployed to t
 ```bash
 pixi run -e author lab
 ```
+
+## License
+
+Course materials under `content/` are licensed under
+[CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/). See
+[LICENSE](LICENSE) for details.
