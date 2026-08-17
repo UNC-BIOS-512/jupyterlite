@@ -1,4 +1,2 @@
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
-}
+options(repr.plot.width = 5, repr.plot.height = 3, repr.plot.res = 250)
 
