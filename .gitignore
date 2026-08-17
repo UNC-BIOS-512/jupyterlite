@@ -1,3 +1,4 @@
+content/scratch*.ipynb
 *.bundle.*
 lib/
 node_modules/
