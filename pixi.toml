@@ -24,6 +24,14 @@ serve = "jupyter lite serve --base-url /jupyterlite/ --port 8000"
 # but native builds (conda-forge) instead of emscripten-forge/WASM, so they run
 # under a normal local Jupyter server. Keep package names in sync with
 # environment.yml — enforced by scripts/check_kernel_deps_sync.py.
+#
+# The "chuckpr" channel here is scoped to this feature only (not added to the
+# workspace [workspace.channels]) to avoid mixing its build stack with
+# conda-forge's for every other dependency. It carries r-cowsay, custom-built
+# for the browser kernel — see scripts/r-cowsay-recipe/.
+[feature.author]
+channels = ["conda-forge", "chuckpr"]
+
 [feature.author.dependencies]
 jupyterlab = "*"
 xeus-python = "*"
@@ -33,6 +41,7 @@ r-dplyr = "*"
 r-readr = "*"
 r-palmerpenguins = "*"
 jupyterlab_rise = "*"
+r-cowsay = { version = "*", channel = "chuckpr" }
 
 [feature.author.tasks]
 lab = "jupyter lab --notebook-dir=content"

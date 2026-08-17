@@ -1,0 +1,53 @@
+context:
+  version: "1.2.2"
+
+package:
+  name: r-cowsay
+  version: ${{ version }}
+
+source:
+  url: https://cran.r-project.org/src/contrib/cowsay_${{ version }}.tar.gz
+  sha256: 9631bf2085a253bcb7b679bdf155d25f62e0c81e5db55f8e95b354101c2c57b2
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - if: win
+      then: bld.bat
+      else: build.sh
+
+requirements:
+  host:
+    - r-base
+    - r-crayon
+    - r-rlang
+  run:
+    - r-base >=4.1
+    - r-crayon
+    - r-rlang
+  ignore_run_exports:
+    by_name:
+      - r-base
+
+tests:
+  - script:
+      - if: win
+        then: []
+        else:
+          - Rscript -e "library(cowsay)"
+
+about:
+  homepage: https://github.com/sckott/cowsay
+  license: MIT
+  license_file: LICENSE
+  summary: Messages, Warnings, Strings with Ascii Animals
+  description: |
+    Allows printing of character strings as messages/warnings/etc.
+    with ASCII animals, including cats, cows, frogs, chickens, ghosts,
+    and more. Built for the emscripten-wasm32 xeus-r kernel used by
+    JupyterLite, where the upstream package isn't otherwise available.
+
+extra:
+  recipe-maintainers:
+    - chuckpr
