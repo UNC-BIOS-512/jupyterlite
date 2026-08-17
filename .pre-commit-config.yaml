@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-kernel-deps-sync
+        name: check kernel deps sync (environment.yml vs pixi.toml author feature)
+        entry: pixi run --environment default python scripts/check_kernel_deps_sync.py
+        language: system
+        files: ^(environment\.yml|pixi\.toml)$
+        pass_filenames: false

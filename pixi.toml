@@ -15,3 +15,23 @@ notebook = ">=7.5"
 clean = "rm -rf dist .jupyterlite.doit.db"
 build = { cmd = "jupyter lite build --contents content --output-dir dist", depends-on = ["clean"] }
 serve = "jupyter lite serve --base-url /jupyterlite/ --port 8000"
+
+# Local authoring env: same kernels as the browser build (xeus-python, xeus-r),
+# but native builds (conda-forge) instead of emscripten-forge/WASM, so they run
+# under a normal local Jupyter server. Keep package names in sync with
+# environment.yml — enforced by scripts/check_kernel_deps_sync.py.
+[feature.author.dependencies]
+jupyterlab = "*"
+xeus-python = "*"
+xeus-r = "*"
+r-ggplot2 = "*"
+r-dplyr = "*"
+r-readr = "*"
+r-palmerpenguins = "*"
+
+[feature.author.tasks]
+lab = "jupyter lab --notebook-dir=content"
+
+[environments]
+default = { solve-group = "default" }
+author = { features = ["author"], solve-group = "author" }
