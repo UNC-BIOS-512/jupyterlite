@@ -23,3 +23,5 @@ dependencies:
   - r-readr
   - r-palmerpenguins
   - r-cowsay
+  - r-hellodatascience
+  - r-tidyr
