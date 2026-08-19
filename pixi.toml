@@ -17,7 +17,9 @@ jupyterlab_rise = "*"
 
 [tasks]
 clean = "rm -rf dist .jupyterlite.doit.db"
-build = { cmd = "jupyter lite build --contents content --output-dir dist", depends-on = ["clean"] }
+build = { cmd = "jupyter lite build --contents content --output-dir dist", depends-on = [
+  "clean",
+] }
 serve = "jupyter lite serve --base-url /jupyterlite/ --port 8000"
 
 # Local authoring env: same kernels as the browser build (xeus-python, xeus-r),
@@ -46,6 +48,8 @@ r-readr = "*"
 r-palmerpenguins = "*"
 jupyterlab_rise = "*"
 r-cowsay = { version = "*", channel = "chuckpr" }
+r-hellodatascience = { version = "*", channel = "chuckpr" }
+r-tidyr = "*"
 
 [feature.author.tasks]
 lab = "jupyter lab --notebook-dir=content"
