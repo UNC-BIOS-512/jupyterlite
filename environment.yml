@@ -25,3 +25,4 @@ dependencies:
   - r-cowsay
   - r-hellodatascience
   - r-tidyr
+  - r-islr2

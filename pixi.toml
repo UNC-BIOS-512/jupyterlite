@@ -50,9 +50,10 @@ jupyterlab_rise = "*"
 r-cowsay = { version = "*", channel = "chuckpr" }
 r-hellodatascience = { version = "*", channel = "chuckpr" }
 r-tidyr = "*"
+r-islr2 = "*"
 
 [feature.author.tasks]
-lab = "jupyter lab --notebook-dir=content"
+lab = "jupyter lab --notebook-dir=content --ip='*' --no-browser"
 
 [environments]
 default = { solve-group = "default" }
