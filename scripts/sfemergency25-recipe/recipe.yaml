@@ -1,0 +1,50 @@
+context:
+  version: "0.1.1"
+  commit: "5687785b503a4aab54c87582912b8a18df65233c"
+
+package:
+  name: r-sfemergency25
+  version: ${{ version }}
+
+source:
+  url: https://github.com/hellodata-science/sfemergency25/archive/${{ commit }}.tar.gz
+  sha256: 03af2a3ffe0d4906e4743f0341b7b4ee1b35ca77ef8aaea4d85f1df5c760c5fe
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - if: win
+      then: bld.bat
+      else: build.sh
+
+requirements:
+  host:
+    - r-base
+  run:
+    - r-base >=3.5
+  ignore_run_exports:
+    by_name:
+      - r-base
+
+tests:
+  - script:
+      - if: win
+        then: []
+        else:
+          - Rscript -e "library(sfemergency25); data(sf911); stopifnot(nrow(sf911) > 0)"
+
+about:
+  homepage: https://hellodata-science.github.io/sfemergency25/
+  license: GPL-3.0-or-later
+  summary: San Francisco Emergency Response Data 2025
+  description: |
+    2025 data from the San Francisco Fire Department and Emergency Medical
+    Services Dispatched Calls for Service (dataset sf911). Not published as
+    a conda package anywhere and not on CRAN (upstream ships it via GitHub
+    install only). Built for the emscripten-wasm32 xeus-r kernel used by
+    JupyterLite, where the upstream package isn't otherwise available.
+
+extra:
+  recipe-maintainers:
+    - chuckpr

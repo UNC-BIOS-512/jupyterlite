@@ -1,0 +1,70 @@
+context:
+  version: "0.9"
+  commit: "769d48c53df87e8c7bc3eecbb0432e92d5684cf1"
+
+package:
+  name: r-gssr
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kjhealy/gssr/archive/${{ commit }}.tar.gz
+  sha256: 29d1c08ca704ebc26abf0725c93fece5058286cfd8d1402bce45ff4900ba5f00
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - if: win
+      then: bld.bat
+      else: build.sh
+
+requirements:
+  host:
+    - r-base
+    - r-dplyr
+    - r-fs
+    - r-haven
+    - r-here
+    - r-magrittr
+    - r-tibble
+  run:
+    - r-base >=4.0
+    - r-dplyr
+    - r-fs
+    - r-haven
+    - r-here
+    - r-magrittr
+    - r-tibble
+  ignore_run_exports:
+    by_name:
+      - r-base
+
+tests:
+  - script:
+      - if: win
+        then: []
+        else:
+          - Rscript -e "library(gssr); data(gss_all); stopifnot(nrow(gss_all) > 0)"
+
+about:
+  homepage: https://github.com/kjhealy/gssr
+  license: MIT
+  license_file: LICENSE.md
+  summary: US General Social Survey (GSS) Data for R
+  description: |
+    The General Social Survey (GSS) Cumulative Data File and Panel Data
+    files packaged for R. Not published as a conda package anywhere
+    (upstream ships binaries only via CRAN-incompatible R-Universe/GitHub
+    installs), so JupyterLite's xeus-r kernel can't install it directly.
+
+    This build strips the `gss_get_yr()` / `gss_get_years()` live-download
+    functions and their `curl` dependency, since `curl` isn't available for
+    the emscripten-wasm32 target and live downloads from NORC wouldn't work
+    in the sandboxed browser kernel anyway. All bundled datasets (`gss_all`,
+    `gss_sub`, `gss_panel06_long`, `gss_panel08_long`, `gss_panel10_long`,
+    `gss_panel20`) and `gss_which_years()` are unaffected. Built for the
+    emscripten-wasm32 xeus-r kernel used by JupyterLite.
+
+extra:
+  recipe-maintainers:
+    - chuckpr

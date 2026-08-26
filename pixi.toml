@@ -51,6 +51,11 @@ r-cowsay = { version = "*", channel = "chuckpr" }
 r-hellodatascience = { version = "*", channel = "chuckpr" }
 r-tidyr = "*"
 r-islr2 = "*"
+r-forcats = ">=1.0.1,<2"
+r-ggdist = ">=3.3.3,<4"
+r-gssr = { version = "*", channel = "chuckpr" }
+r-sfemergency25 = { version = "*", channel = "chuckpr" }
+r-janitor = "*"
 
 [feature.author.tasks]
 lab = "jupyter lab --notebook-dir=content --ip='*' --no-browser"

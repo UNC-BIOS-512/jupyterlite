@@ -24,5 +24,9 @@ dependencies:
   - r-palmerpenguins
   - r-cowsay
   - r-hellodatascience
+  - r-janitor
   - r-tidyr
   - r-islr2
+  - r-forcats
+  - r-gssr
+  - r-sfemergency25

@@ -19,7 +19,7 @@ PIXI_TOML = ROOT / "pixi.toml"
 
 # Packages that only make sense in the local authoring env (e.g. the
 # notebook frontend itself) and have no browser-kernel counterpart.
-LOCAL_ONLY_EXTRAS = {"jupyterlab", "jupyterlab_rise"}
+LOCAL_ONLY_EXTRAS = {"jupyterlab", "jupyterlab_rise", "r-ggdist"}
 
 
 def parse_environment_yml_deps(path):

@@ -1,4 +1,4 @@
-content/scratch*.ipynb
+content/scratch/
 *.bundle.*
 lib/
 node_modules/
@@ -118,3 +118,6 @@ _output
 
 # pixi
 .pixi
+
+# recipe build artifacts (rattler-build output, src caches, .conda packages)
+scripts/*-recipe/output/
