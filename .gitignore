@@ -121,3 +121,6 @@ _output
 
 # recipe build artifacts (rattler-build output, src caches, .conda packages)
 scripts/*-recipe/output/
+
+# large datasets - do not commit, host externally
+content/data/gss.csv.gz
