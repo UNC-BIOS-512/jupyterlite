@@ -28,5 +28,4 @@ dependencies:
   - r-tidyr
   - r-islr2
   - r-forcats
-  - r-gssr
   - r-sfemergency25
