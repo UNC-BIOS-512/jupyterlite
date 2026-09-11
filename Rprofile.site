@@ -1,2 +1,7 @@
-options(repr.plot.width = 5, repr.plot.height = 3, repr.plot.res = 250)
+# Tell R the time zone up front. Without TZ set, Sys.timezone() probes the
+# system (/var/db/timezone/localtime, `which cmp`, ...) - none of that exists
+# in the browser (WASM) R, so students see confusing warnings. The zoneinfo
+# database ships inside r-base ($R_HOME/share/zoneinfo), so any IANA name works.
+Sys.setenv(TZ = "America/New_York")
 
+options(repr.plot.width = 5, repr.plot.height = 3, repr.plot.res = 250)
