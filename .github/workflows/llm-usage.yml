@@ -1,0 +1,43 @@
+# Daily anonymous export of class LLM gateway usage to data/llm_usage.csv.
+# Commits made with GITHUB_TOKEN don't trigger other workflows, so this
+# doesn't rebuild the JupyterLite site.
+name: LLM usage export
+
+on:
+  schedule:
+    - cron: "0 10 * * *" # 6 AM Eastern (EDT)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: llm-usage
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Export usage
+        env:
+          LITELLM_URL: ${{ vars.LITELLM_URL }}
+          USAGE_EXCLUDE: ${{ vars.USAGE_EXCLUDE }}
+          LITELLM_USAGE_KEY: ${{ secrets.LITELLM_USAGE_KEY }}
+          USAGE_ID_SALT: ${{ secrets.USAGE_ID_SALT }}
+        run: python3 scripts/export_llm_usage.py
+
+      - name: Commit if changed
+        run: |
+          git add data/llm_usage.csv
+          if git diff --cached --quiet; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update LLM usage data"
+          git push
