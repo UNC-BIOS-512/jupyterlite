@@ -20,14 +20,17 @@ import hashlib
 import hmac
 import json
 import os
+import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUT = ROOT / "data" / "llm_usage.csv"
 TZ = ZoneInfo("America/New_York")
+START_DATE = "2026-09-01 00:00:00"  # before the gateway went live
+PAGE_SIZE = 100
 
 # Test and service keys, never students.
 ALWAYS_EXCLUDE_PREFIXES = ("zz-", "usage-export")
@@ -47,12 +50,23 @@ COLUMNS = [
 
 
 def fetch_spend_logs(url, key):
-    req = urllib.request.Request(
-        f"{url.rstrip('/')}/spend/logs",
-        headers={"Authorization": f"Bearer {key}", "User-Agent": "bios512-usage-export"},
-    )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return json.load(resp)
+    # Page through /spend/logs/ui. Plain /spend/logs returns every row in one
+    # response, which runs the small proxy out of memory as the logs grow.
+    end = (datetime.now(timezone.utc) + timedelta(days=1)).strftime("%Y-%m-%d 00:00:00")
+    page, total_pages = 1, 1
+    while page <= total_pages:
+        query = urllib.parse.urlencode(
+            {"start_date": START_DATE, "end_date": end, "page": page, "page_size": PAGE_SIZE}
+        )
+        req = urllib.request.Request(
+            f"{url.rstrip('/')}/spend/logs/ui?{query}",
+            headers={"Authorization": f"Bearer {key}", "User-Agent": "bios512-usage-export"},
+        )
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            body = json.load(resp)
+        yield from body["data"]
+        total_pages = body["total_pages"]
+        page += 1
 
 
 def parse_time(value):
